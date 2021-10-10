@@ -32,7 +32,7 @@ export default function Header() {
             <Nav.Link eventKey="link-1">Kiểm tra nhóm</Nav.Link>
           </Nav.Item>
           <Nav.Item as="li">
-            <Nav.Link href="/jamboard">Họp nhóm</Nav.Link>
+            <Nav.Link href="/jamboard">Học nhóm</Nav.Link>
           </Nav.Item>
         </Nav>
         <Nav defaultActiveKey="/home" as="ul">

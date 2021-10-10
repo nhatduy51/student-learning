@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Form, Input, Button } from "antd";
 import Image from "./Assets/customer-5.svg";
+// import { useHistory } from "react-router-dom";
 import "antd/dist/antd.css";
 
 const RegisterStyle = styled.div`
@@ -25,9 +26,23 @@ const RegisterStyle = styled.div`
 `;
 
 export default function RegisterScreen() {
-  const onFinish = (values) => {
+  const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [finish, setFinish] = React.useState("");
+
+
+  // const history = useHistory();
+
+  const onFinish = async (values) => {
     console.log("Success:", values);
+    await setPassword(values.password);
+    await setConfirmPassword(values.Confirmpassword);
+    if (password === confirmPassword) {
+     setFinish("Bạn đã đăng ký tài khoản thành công")
+    }
+    else setFinish("sai mật khẩu")
   };
+  console.log(password, confirmPassword);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -79,7 +94,7 @@ export default function RegisterScreen() {
                   </Form.Item>
                   <Form.Item
                     label="Confirm Password"
-                    name="Confirm password"
+                    name="Confirmpassword"
                     rules={[
                       {
                         required: true,
@@ -89,6 +104,7 @@ export default function RegisterScreen() {
                   >
                     <Input.Password />
                   </Form.Item>
+                  <div style={{marginLeft: 200, marginBottom: 20, color:'green'}}>{finish}</div>
                   <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">
                       Submit
